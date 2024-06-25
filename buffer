@@ -1,0 +1,21 @@
+//create a  design module
+
+module buffer(input a,output y);
+  assign y=a;
+endmodule 
+
+//testbench module
+
+module tb_buffer();
+  reg a;
+  wire y;
+  buffer i_buffer(a,y);  //instantiating the design module
+  initial begin
+    $monitor("a = %0d,y = %0d",a,y);
+    a = 1;
+    #20;
+    a = 0;
+    #50;
+    $finish();
+  end
+endmodule  
