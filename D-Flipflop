@@ -1,0 +1,32 @@
+//Design Module
+
+module d_flipflop(clock,D,reset,q);
+  input D,clock,reset;
+  output reg q;
+  always @(posedge clock)
+    begin
+      if(reset)
+          q <= 1'b0;
+      else
+          q <= D;
+    end
+endmodule
+
+
+//Testbench module    
+
+ module tb_d_flipflop();
+    reg D,clock,reset;
+    wire q;
+    always #5 clock = ~clock;
+    initial begin
+        $monitor("clock = %0d,D = %0d,reset = %0d,q = %0d",clock,D,reset,q);
+        clock = 0;
+        reset = 1;
+        D = 0;
+        #60  reset = 0;
+        D = 1;
+        #90 $finish();
+  end
+  d_flipflop i_dff(clock,D,reset,q);  //Design module instantiation
+endmodule
