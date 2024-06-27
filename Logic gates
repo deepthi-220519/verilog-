@@ -1,0 +1,204 @@
+//---------------------------------AND GATE-----------------------------------
+// Design Module
+
+module and_gate(a,b,y);
+  input a,b;
+  output y;
+  assign y = a & b;
+endmodule
+
+
+//Testbench module
+
+
+module tb_andgate();
+  reg a,b;
+  wire y;
+  and_gate i_and(a,b,y);  //Design module instantiation
+  initial begin
+      $monitor("a = %0d,b = %0d, y = %0d",a,b,y);
+      a = 0;b = 0;
+      #10
+      a = 1;b = 0;
+      #10
+      a = 0;b = 1;
+      #10
+      a = 1;b = 1;
+      #100
+      $finish();
+  end
+endmodule
+
+
+//---------------------------------OR GATE-----------------------------------
+// Design Module
+
+module or_gate(a,b,y);
+  input a,b;
+  output y;
+  assign y = a | b;
+endmodule
+
+
+//Testbench module
+
+module tb_orgate();
+  reg a,b;
+  wire y;
+  or_gate i_or(a,b,y);  //Design module instantiation
+  initial begin
+      $monitor("a = %0d,b = %0d, y = %0d",a,b,y);
+      a = 0;b = 0;
+      #10
+      a = 1;b = 0;
+      #10
+      a = 0;b = 1;
+      #10
+      a = 1;b = 1;
+      #100
+      $finish();
+  end
+endmodule
+
+//---------------------------------EX-OR GATE-----------------------------------
+// Design Module
+
+module xor_gate(a,b,y);
+  input a,b;
+  output y;
+  assign y = a ^ b;
+endmodule
+
+
+//Testbench module
+
+
+module tb_xorgate();
+  reg a,b;
+  wire y;
+  xor_gate i_xor(a,b,y);  //Design module instantiation
+  initial begin
+      $monitor("a = %0d,b = %0d, y = %0d",a,b,y);
+      a = 0;b = 0;
+      #10
+      a = 1;b = 0;
+      #10
+      a = 0;b = 1;
+      #10
+      a = 1;b = 1;
+      #100
+      $finish();
+  end
+endmodule
+
+//---------------------------------EX-NOR GATE-----------------------------------
+// Design Module
+
+module xnor_gate(a,b,y);
+  input a,b;
+  output y;
+  assign y = ~(a ^ b);
+endmodule
+
+
+//Testbench module
+
+module tb_xnorgate();
+  reg a,b;
+  wire y;
+  xnor_gate i_xnor(a,b,y);  //Design module instantiation
+  initial begin
+      $monitor("a = %0d,b = %0d, y = %0d",a,b,y);
+      a = 0;b = 0;
+      #10
+      a = 1;b = 0;
+      #10
+      a = 0;b = 1;
+      #10
+      a = 1;b = 1;
+      #100
+      $finish();
+  end
+endmodule
+
+//---------------------------------NAND GATE-----------------------------------
+// Design Module
+
+module nandgate(a,b,y);
+  input a,b;
+  output y;
+  assign y = ~(a & b);
+endmodule
+
+//Testbench module
+
+module tb_nandgate();
+  reg a,b;
+  wire y;
+  nand_gate i_nand(a,b,y);  //Design module instantiation
+  initial begin
+      $monitor("a = %0d,b = %0d, y = %0d",a,b,y);
+      a = 0;b = 0;
+      #10
+      a = 1;b = 0;
+      #10
+      a = 0;b = 1;
+      #10
+      a = 1;b = 1;
+      #100
+      $finish();
+  end
+endmodule
+
+//---------------------------------NOR GATE-----------------------------------
+// Design Module
+
+module norgate(a,b,y);
+  input a,b;
+  output y;
+  assign y = ~(a | b);
+endmodule
+
+//Testbench module
+
+module tb_norgate();
+  reg a,b;
+  wire y;
+  nor_gate i_nor(a,b,y);  //Design module instantiation
+  initial begin
+      $monitor("a = %0d,b = %0d, y = %0d",a,b,y);
+      a = 0;b = 0;
+      #10
+      a = 1;b = 0;
+      #10
+      a = 0;b = 1;
+      #10
+      a = 1;b = 1;
+      #100
+      $finish();
+  end
+endmodule
+
+//---------------------------------NOT GATE-----------------------------------
+// Design Module
+
+module not_gate(a,y);
+  input a;
+  output y;
+  assign y = ~a;
+endmodule
+
+//Testbench module
+
+module tb_notgate();
+  reg a;
+  wire y;
+  not_gate i_not(a,y); //Design module instantiation
+  initial begin
+      $monitor("a = %0d, y = %0d",a,y);
+      a = 0;
+      #10; 
+      a = 1;
+      #50 $finish();
+  end
+endmodule
