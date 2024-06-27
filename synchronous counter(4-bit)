@@ -1,0 +1,34 @@
+//Design module
+
+module counter_synchronous(clock,reset,count);
+  input clock,reset;
+  output reg [3:0]count;
+  always @(posedge clock)
+  begin
+      if(reset == 1)
+            count <= 4'b0000;
+      else
+            count <= count+1;
+  end
+endmodule
+
+
+//Testbench Module
+
+module tb_counter_synchronous();
+  reg clock,reset;
+  wire [3:0]count;
+  counter_asynchronous i_sync_counter(clock,reset,count); //Instantiating the design module inside a testbench module
+  always #5 clock = ~clock;
+  initial begin
+        $monitor("clock = %0d,reset = %0d,count = %0d",clock,reset,count);
+        clock = 1;
+        reset = 1;
+        #5;
+        reset = 0;
+        #50;
+        $finish();
+  end
+endmodule
+
+
