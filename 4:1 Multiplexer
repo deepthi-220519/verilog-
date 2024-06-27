@@ -1,0 +1,45 @@
+//Design Module
+
+module four2one_mux(a,b,c,d,sel,y);
+  input a,b,c,d;
+  input [1:0]sel;
+  output reg y;
+  always @(sel)
+  begin
+      case({sel})
+        2'b00 : y = a;
+        2'b01 : y = b;    
+        2'b10 : y = c;
+        2'b11 : y = d;
+      endcase
+  end
+endmodule
+
+
+//Testbench Module
+
+ module tb_four2one_mux();
+   reg a,b,c,d;
+   wire y;
+   reg [1:0]sel;
+   four2one_mux i_mux(a,b,c,d,sel,y);
+   initial begin
+       s[0]=0;
+       s[1]=0;
+       a = 1'b1;
+       #10
+       s[0]=0;
+       s[1]=1;
+       b = 1'b0;
+       #10
+       s[0]=1;
+       s[1]=0;
+       c = 1'b1;
+       #10
+       s[0]=1;
+       s[1]=1;
+       d = 1'b1;
+       #100
+       $finish();
+  end
+endmodule
