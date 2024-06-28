@@ -1,0 +1,33 @@
+//Design Module
+
+module two2one_mux(a,b,sel,y);
+  input a,b;
+  input sel;
+  output reg y;
+  always @(sel)
+  begin
+      case({sel})
+        2'b0 : y = a;
+        2'b1 : y = b;    
+      endcase
+  end
+endmodule
+
+
+//Testbench Module
+
+ module tb_two2one_mux();
+   reg a,b;
+   wire y;
+   reg sel;
+   two2one_mux i_mux(a,b,sel,y); //Design module instantiation
+   initial begin
+       s[0]=0;
+       a = 1'b1;
+       #10
+       s[0]=1;
+       b = 1'b0;
+       #100
+       $finish();
+  end
+endmodule
