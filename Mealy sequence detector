@@ -63,6 +63,7 @@ module tb_fsm_mealy_nonoverlap();
       #7 x = 0;
       #7 x = 1;
       #7 x = 1;
+      #7 x = 1;
       #7 x = 0;
       #7 x = 1;
       #7 x = 1;
