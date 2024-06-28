@@ -1,0 +1,37 @@
+//Design module
+
+module gray_counter(clock,reset,y);
+  input clock,reset;
+  output reg [2:0]y;
+  reg [2:0]count;
+  always @(posedge clock or posedge reset)
+  begin
+      if(reset)
+        begin
+            count <= 3'b0;
+            y <= 3'b0;
+        end
+      else
+        begin
+            count <= count+1;
+            y <= {count[2],(count[2] ^ count[1]),(count[1] ^ count[0])};
+        end
+    end
+endmodule
+
+//Testbench module
+
+module tb_gray_counter();
+  reg clock,reset;
+  wire [2:0]y;
+  wire [2:0]count;
+  always #5 clock = ~clock;
+  gray_counter i_gray(clock,reset,y);
+  initial begin
+      $monitor("clock = %0d,reset = %0d,y = %0d",clock,reset,y);
+      clock = 1; reset = 1;
+      #10 reset = 0;
+      #100 $finish();
+  end
+endmodule
+
